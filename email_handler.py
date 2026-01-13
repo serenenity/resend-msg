@@ -10,17 +10,22 @@ if not os.environ["RESEND_API_KEY"]:
 resend.api_key = os.getenv("RESEND_API_KEY")
 
 
-def send_email():
+def send_email(sender, to, subject, content):
     try:
         email = resend.Emails.send({
-            "from": "Welcome <paulmike@contact.moneysense.ng>",
-            "to": "stephenmatthew283@gmail.com",
-            "subject": "Hello World",
-            "html": "<p>Welcome to Moneysense Inc.<strong> We are just getting started</strong>!</p>"
+            "from": sender,
+            "to": to,
+            "subject": subject,
+            "html": content
         })
         print("Email sent successfully:", email)
     except Exception as e:
         print("Error sending email:", e)
 
 if __name__ == "__main__":
-    send_email()
+    send_email(
+        "Welcome <paulmike@contact.moneysense.ng>",
+        "oderamark120@gmail.com",
+        "Hello World",
+        "<p>Welcome to Moneysense Inc.<strong> We are just getting started</strong>!</p>"
+    )
